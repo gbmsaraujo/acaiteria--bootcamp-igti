@@ -1,0 +1,26 @@
+<section>
+    <h3>{{titulo}}</h3>
+    <p *ngIf="escolhaAte!=1" class='p-inline'>Escolha até:{{escolhaAte}}
+
+        <ng-container [ngSwitch]="opcoesSelecionadas.length">
+
+            <p class='p-inline' *ngSwitchCase="0"> (0 Selecionado)</p>
+            <p class='p-inline' *ngSwitchCase="1"> ({{opcoesSelecionadas.length}} Selecionado)</p>
+            <p class='p-inline' *ngSwitchCase="2"> ({{opcoesSelecionadas.length}} Selecionados)</p>
+            <p class='p-inline' *ngSwitchCase="3"> ({{opcoesSelecionadas.length}} Selecionados)</p>
+
+        </ng-container>
+
+    </p>
+
+</section>
+
+<div *ngFor="let opcao of opcoes" class="group-selection">
+
+    <label>
+        <input [type]="escolhaAte == 1 ? 'radio' : 'checkbox'" (change)="marcaOuDesmarcaOpcao(opcao)"
+            [checked]="opcaoSelecionada(opcao)" [disabled]="opcoesSelecionadas.length>=3 && !opcaoSelecionada(opcao)" />
+        {{opcao}}
+    </label>
+
+</div>
